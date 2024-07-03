@@ -1,0 +1,17 @@
+{
+  "name": "clinet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "protoc": "\"\"node_modules/.bin/proto-loader-gen-types\"\" --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/types protos/Main.proto",
+    "start": "npx ts-node src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.10",
+    "@grpc/proto-loader": "^0.7.13",
+    "ts-node": "^10.9.2"
+  }
+}
