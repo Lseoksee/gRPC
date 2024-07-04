@@ -41,11 +41,19 @@ import { StreamingResponse } from "./types/grpc/StreamingResponse";
 
     // 양방향 스트리밍 함수
     const interactiveStream = streamingService.interactiveStream();
+
+    //서버 패킷 응답 리스너
     interactiveStream.on("data", (data) => {
         const res = data as StreamingResponse 
         console.log(`[서버 패킷]: ${res.result}`);
     });
 
+    //서버가 데이터 전송을 완료하는 메시지 보내면 작동
+    interactiveStream.on("end", () => {
+        console.log(`[서버 패킷]: 모든 데이터 전송 완료`);
+    });
+
+    // 서버에 1초에 한번씩 10개의 패킷을 보냄
     for (let i = 0; i < 10; i++) {
         interactiveStream.write({data: `패킷${i}`}, () => {
             console.log(`[서버에게 전송]: 패킷${i}` );
@@ -53,9 +61,10 @@ import { StreamingResponse } from "./types/grpc/StreamingResponse";
         await sleep(500);
     }
 
-    // 서버에 데이터가 전부 전송되었다는 것을 보낸다
+    // 데이터 전송이 완료되었다는 메시지를 서버에 보냄
     interactiveStream.end();
-
+    console.log("[서버에게 전송]: 전송완료");
+    
     // 프로그램이 종료되는 조건 = 서버응답종료 && 클라이언트 데이터 전송 종료
 })();
 
