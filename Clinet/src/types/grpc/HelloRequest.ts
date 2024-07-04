@@ -1,4 +1,4 @@
-// Original file: protos/Main.proto
+// Original file: proto/Main.proto
 
 
 export interface HelloRequest {

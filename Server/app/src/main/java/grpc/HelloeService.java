@@ -3,7 +3,7 @@ package grpc;
 import grpc.HelloServiceGrpc.HelloServiceImplBase;
 import io.grpc.stub.StreamObserver;
 
-public class GrpcService extends HelloServiceImplBase {
+public class HelloeService extends HelloServiceImplBase {
 
     @Override
     public void hello(HelloRequest request, StreamObserver<HelloResponse> responseObserver) {

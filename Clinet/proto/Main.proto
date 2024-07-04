@@ -1,4 +1,6 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
+
 option java_multiple_files = true;
 package grpc;
 
@@ -11,6 +13,21 @@ message HelloResponse {
   string greeting = 1;
 }
 
+message StreamingResponse {
+  string result = 1;
+}
+
+message StreamingReqests {
+  string data = 1;
+} 
+
 service HelloService {
   rpc hello(HelloRequest) returns (HelloResponse);
+}
+
+// 스트리밍 서비스
+service StreamingService {
+  // google.protobuf.Empty=함수 파라미터 없이
+  rpc serverStream(google.protobuf.Empty) returns (stream StreamingResponse); // 서버 스트리밍
+  rpc interactiveStream(stream StreamingReqests) returns (stream StreamingResponse); // 양방향 스트리밍
 }

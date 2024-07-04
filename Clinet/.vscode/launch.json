@@ -9,7 +9,7 @@
             "request": "launch",
             "runtimeExecutable": "npx",
             "type": "node",
-            "args": ["ts-node", "src/index.ts"]
+            "args": ["ts-node", "${file}"]
         },
     ]
 }
