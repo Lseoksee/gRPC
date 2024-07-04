@@ -15,7 +15,6 @@ public class ServerMain {
     public static FieldAccessorTable internal_static_grpc_HelloResponse_fieldAccessorTable;
 
     public static void main(String[] args) throws Exception {
-
         Server server = ServerBuilder.forPort(8080)
                 .addService(new HelloeService())
                 .addService(new StreamingService())
